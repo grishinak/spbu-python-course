@@ -6,7 +6,7 @@ from math import sqrt, acos, degrees
 #return dot product of 2 vectors
 def scalar_product(x,y):
     if len(x)!=len(y):
-        raise ValueError("error: vector lengths are different")
+        raise ValueError("Error: vector lengths are not equal.")
     
     total=0
     for i in range(len(x)):
@@ -20,8 +20,8 @@ def vector_length(x):
     total=0
     for i in range(len(x)):
         total+=(x[i])**2
-    ans=sqrt(total)
-    return(ans)
+
+    return(sqrt(total))
 #print(vector_length([3,4]))
 
 # returns angle between vectors in degrees
@@ -34,7 +34,7 @@ def angle(x,y):
 
 def matrix_addition(A,B):
     if len(A)!=len(B) or len(A[0])!=len(B[0]):
-        raise ValueError('error: matrices should be same dimensional')
+        raise ValueError('Error: matrices of different dimensions')
 
     result_m=[[0]*len(A[0]) for i in range(len(A))]
     for i in range (len(A)):
@@ -56,7 +56,7 @@ def matrix_addition(A,B):
 
 def matrix_multiplication(A, B):
     if len(A[0])!=len(B):
-        raise ValueError('error:matrices cannot be multiplied')
+        raise ValueError('Error: number of rows of first matrix and number of columns of second matrix are different')
     
     rm_rows=len(A)
     rm_cols=len(B[0])
@@ -67,7 +67,6 @@ def matrix_multiplication(A, B):
         for j in range(len(B[0])):
             for k in range(len(B)):
                 result_m[i][j]+=A[i][k]*B[k][j]
-
 
     return(result_m)
 
