@@ -48,3 +48,8 @@ jobs:
       - name: Test with pytest
         run: |
           pytest tests
+
+      # Run the test script
+      - name: Test with run_tests script
+        run: |
+          python scripts/run_tests.py
