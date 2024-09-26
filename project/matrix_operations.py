@@ -2,6 +2,7 @@ from typing import List
 
 # Matrix operations
 
+
 def matrix_addition(A: List[List[float]], B: List[List[float]]) -> List[List[float]]:
     """
     Add two matrices.

@@ -3,6 +3,7 @@ from typing import List
 
 # Vector operations
 
+
 def dot_product(v1: List[float], v2: List[float]) -> float:
     """
     Calculate the dot product of two vectors.
@@ -72,4 +73,3 @@ def angle(v1: List[float], v2: List[float]) -> float:
         The angle between the two vectors in degrees.
     """
     return degrees(acos(dot_product(v1, v2) / (vector_length(v1) * vector_length(v2))))
-
