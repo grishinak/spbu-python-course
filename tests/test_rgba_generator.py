@@ -1,6 +1,8 @@
 import pytest
 from project.rgba_generator import get_rgba_element
 
+# 1. generator-expression
+
 
 @pytest.mark.parametrize(
     "index, expected",
@@ -25,6 +27,8 @@ def test_get_rgba_element_invalid(invalid_index):
     with pytest.raises(IndexError):
         get_rgba_element(invalid_index)
 
+
+# 2.generator-function (done it first, then realised it is not fit the criteria)
 
 # @pytest.mark.parametrize(
 #     "index, expected",

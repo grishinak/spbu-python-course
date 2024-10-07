@@ -1,6 +1,7 @@
-from typing import Tuple #, Iterator
+from typing import Tuple  # , Iterator
 
 # 1. generator-expression
+
 
 def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
     """Returns the i-th element from the RGBA vector generator.
@@ -40,7 +41,6 @@ def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
     for idx, rgba in enumerate(rgba_gen):
         if idx == i:
             return rgba
-
 
 
 # 2.generator-function (done it first, then realised it is not fit the criteria)
