@@ -11,8 +11,8 @@ from project.rgba_generator import get_rgba_element
         (51, (0, 0, 1, 0)),
         (256 * 51, (0, 1, 0, 0)),
         (256 * 256 * 51, (1, 0, 0, 0)),
-        # (256*256*256*50, (255,255,255,0)),    #TODO:need to optimize for big indexes
-        # (256*256*256*50+1, (255,255,255,2)),
+        # (256*256*256*51, (255,255,255,0)),    #TODO:need to optimize for big indexes
+        # (256*256*256*51+1, (255,255,255,2)),
     ],
 )
 def test_get_rgba_element(index, expected):
