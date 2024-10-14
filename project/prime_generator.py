@@ -1,4 +1,4 @@
-from typing import Generator, Callable
+from typing import Generator, Callable, List, Union
 
 
 def prime_number_generator() -> Generator[int, None, None]:
@@ -11,7 +11,7 @@ def prime_number_generator() -> Generator[int, None, None]:
         The next prime number in the sequence.
     """
     number = 2
-    primes: list[int] = []
+    primes: List[int] = []
     while True:
         if all(number % p != 0 for p in primes):
             primes.append(number)
@@ -51,7 +51,7 @@ def get_kth_prime(
             The k-th prime number.
         """
         prime_gen = func()
-        prime: int | None = None
+        prime: Union[int, None] = None
         for _ in range(k):
             prime = next(prime_gen)
         assert prime is not None, "Prime generator returned None unexpectedly"
@@ -72,7 +72,7 @@ def kth_prime_generator() -> Generator[int, None, None]:  # renamed due mypy red
         The next prime number in the sequence.
     """
     number = 2
-    primes: list[int] = []
+    primes: List[int] = []
     while True:
         if all(number % p != 0 for p in primes):
             primes.append(number)
