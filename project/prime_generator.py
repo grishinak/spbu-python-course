@@ -60,6 +60,7 @@ def get_kth_prime(
     return wrapper
 
 
+# wrap the func here
 @get_kth_prime
 def kth_prime_generator() -> Generator[int, None, None]:  # renamed due mypy redef error
     """

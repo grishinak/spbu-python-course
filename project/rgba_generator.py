@@ -42,3 +42,6 @@ def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
     for idx, rgba in enumerate(rgba_gen):
         if idx == i:
             return rgba
+
+    # Raise an exception if the index is not found (though this should never happen, for mypy)
+    raise RuntimeError("Unable to retrieve the i-th RGBA element.")
