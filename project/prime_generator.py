@@ -58,23 +58,3 @@ def get_kth_prime(
         return prime
 
     return wrapper
-
-
-# wrap the func here
-@get_kth_prime
-def kth_prime_generator() -> Generator[int, None, None]:  # renamed due mypy redef error
-    """
-    Generator of prime numbers with a decorator to get the k-th prime number.
-
-    Yields
-    ------
-    int
-        The next prime number in the sequence.
-    """
-    number = 2
-    primes: List[int] = []
-    while True:
-        if all(number % p != 0 for p in primes):
-            primes.append(number)
-            yield number
-        number += 1

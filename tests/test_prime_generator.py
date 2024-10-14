@@ -1,7 +1,6 @@
 import pytest
 from project.prime_generator import (
     prime_number_generator,
-    kth_prime_generator,
     get_kth_prime,
 )
 
@@ -21,7 +20,7 @@ def test_prime_number_generator(num_primes, expected_primes):
     assert primes == expected_primes
 
 
-## test func wrapped here
+## test func-gen which wrapped here
 @pytest.mark.parametrize(
     "k, expected_prime",
     [
@@ -41,21 +40,3 @@ def test_get_kth_prime(k, expected_prime):
         return prime_number_generator()
 
     assert prime_gen(k) == expected_prime
-
-
-# test prime_gen with get_kth_prime decorator wrapped in project dir file
-@pytest.mark.parametrize(
-    "k, expected",
-    [
-        (1, 2),
-        (2, 3),
-        (3, 5),
-        (4, 7),
-        (5, 11),
-        (6, 13),
-        (7, 17),
-    ],
-)
-def test_kth_prime_generator(k, expected):
-    """Testing the kth_prime_generator function to obtain the kth prime number."""
-    assert kth_prime_generator(k) == expected
