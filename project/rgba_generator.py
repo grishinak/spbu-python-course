@@ -1,4 +1,4 @@
-from typing import Tuple  # , Iterator
+from typing import Tuple
 
 # 1. generator-expression
 
@@ -34,7 +34,8 @@ def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
         for r in range(total_colors)
         for g in range(total_colors)
         for b in range(total_colors)
-        for a in range(0, 101, 2)  # Only even alpha values
+        for a in range(0, 101)
+        if a % 2 == 0  # Only even alpha values
     )
 
     # Retrieve the i-th element from the generator expression
