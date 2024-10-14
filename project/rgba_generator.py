@@ -1,7 +1,5 @@
 from typing import Tuple
 
-# 1. generator-expression
-
 
 def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
     """Returns the i-th element from the RGBA vector generator.
@@ -38,10 +36,10 @@ def get_rgba_element(i: int) -> Tuple[int, int, int, int]:
         if a % 2 == 0  # Only even alpha values
     )
 
-    # Retrieve the i-th element from the generator expression
+    # Get the i-th element from the generator expression
     for idx, rgba in enumerate(rgba_gen):
         if idx == i:
             return rgba
 
     # Raise an exception if the index is not found (though this should never happen, for mypy)
-    raise RuntimeError("Unable to retrieve the i-th RGBA element.")
+    raise RuntimeError("Unable to get the i-th RGBA element.")

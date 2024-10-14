@@ -1,8 +1,6 @@
 import pytest
 from project.rgba_generator import get_rgba_element
 
-# 1. generator-expression
-
 
 @pytest.mark.parametrize(
     "index, expected",
