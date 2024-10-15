@@ -56,7 +56,7 @@ def get_kth_prime(
         int
             The k-th prime number.
         """
-        prime: int = 0
+        prime = 0
         for _ in range(k):
             prime = next(prime_gen)
         return prime
