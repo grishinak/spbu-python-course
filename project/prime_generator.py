@@ -1,4 +1,4 @@
-from typing import Generator, Callable, List, Union
+from typing import Generator, Callable
 
 
 def prime_number_generator() -> Generator[int, None, None]:
@@ -10,11 +10,15 @@ def prime_number_generator() -> Generator[int, None, None]:
     int
         The next prime number in the sequence.
     """
+    # O(sqrt(N))
     number = 2
-    primes: List[int] = []
     while True:
-        if all(number % p != 0 for p in primes):
-            primes.append(number)
+        is_prime = True
+        for i in range(2, int(number**0.5) + 1):
+            if number % i == 0:
+                is_prime = False
+                break
+        if is_prime:
             yield number
         number += 1
 
@@ -27,7 +31,7 @@ def get_kth_prime(
 
     Parameters
     ----------
-    func : Callable
+    func : Callable[[], Generator[int, None, None]]
         A function that returns a generator of prime numbers.
 
     Returns
@@ -35,6 +39,8 @@ def get_kth_prime(
     Callable[[int], int]
         A function that returns the k-th prime number.
     """
+    # Create a prime number generator once
+    prime_gen = func()
 
     def wrapper(k: int) -> int:
         """
@@ -50,11 +56,9 @@ def get_kth_prime(
         int
             The k-th prime number.
         """
-        prime_gen = func()
-        prime: Union[int, None] = None
+        prime: int = 0
         for _ in range(k):
             prime = next(prime_gen)
-        assert prime is not None, "Prime generator returned None unexpectedly"
         return prime
 
     return wrapper
