@@ -5,7 +5,7 @@ from project.curry_uncurry import curry_explicit, uncurry_explicit
 @pytest.mark.parametrize(
     "function, arity, args, expected_exception",
     [
-        (lambda x: f"<{x}>", 0, (1,), TypeError),  
+        (lambda x: f"<{x}>", 0, (1,), TypeError),
         (lambda x: f"<{x}>", 1, (1, 3), TypeError),  # Too many arguments
         (lambda x: f"<{x}>", -1, (1,), ValueError),  # Negative arity
     ],
