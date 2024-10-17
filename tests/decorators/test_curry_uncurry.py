@@ -1,5 +1,5 @@
 import pytest
-from project.curry_uncurry import curry_explicit, uncurry_explicit
+from project.decorators.curry_uncurry import curry_explicit, uncurry_explicit
 
 # Tests for curry_explicit
 @pytest.mark.parametrize(

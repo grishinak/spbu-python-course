@@ -1,7 +1,7 @@
 import pytest
-from project.cache_decorator import cache_results
+from project.decorators.cache_decorator import cache_results
 
-# Test for the version without the flag
+
 @cache_results(max_size=3)
 def expensive_function(x, y):
     """Example function that simulates long computations."""

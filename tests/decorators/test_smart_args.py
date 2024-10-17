@@ -1,6 +1,6 @@
 import pytest
 from itertools import count
-from project.smart_args_decorator import smart_args, Isolated, Evaluated
+from project.decorators.smart_args_decorator import smart_args, Isolated, Evaluated
 
 # Helper function to simulate unique values
 counter = count()
