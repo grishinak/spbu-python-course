@@ -33,37 +33,3 @@ def cache_results(max_size: int = 0) -> Callable:
         return wrapper
 
     return decorator
-
-
-# its unnecessary
-# Version with a flag (indicates if result was taken from cache)
-def cache_results_f(max_size: int = 0) -> Callable:
-    """Decorator for caching the results of a function (with a flag).
-
-    Parameters
-    ----------
-    max_size : int
-        Maximum number of cached results. Defaults to 0 (no caching).
-    """
-
-    def decorator(func: Callable) -> Callable:
-        cache: OrderedDict[Tuple, Any] = OrderedDict()
-
-        @wraps(func)
-        def wrapper(*args: Any, **kwargs: Any) -> Tuple[Any, bool]:
-            key = (args, frozenset(kwargs.items()))
-            if key in cache:
-                return cache[key], True  # Return cached result and flag
-
-            result = func(*args, **kwargs)  # Compute the result
-            cache[key] = result  # Store result in cache
-
-            # Remove old entries if the cache exceeds max_size
-            if max_size > 0 and len(cache) > max_size:
-                cache.popitem(last=False)  # Remove the oldest entry (FI-FO)
-
-            return result, False  # Return computed result and flag
-
-        return wrapper
-
-    return decorator
