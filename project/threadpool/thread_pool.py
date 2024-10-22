@@ -1,24 +1,3 @@
-"""
-thread_pool.py
-
-A simple thread pool implementation.
-
-This module provides a ThreadPool class that manages a fixed number of threads
-to execute tasks concurrently. Tasks are added to the pool and processed by
-available threads.
-
-Example usage:
-
-    from project.threadpool.thread_pool import ThreadPool
-
-    def example_task():
-        print("Task executed!")
-
-    pool = ThreadPool(num_threads=4)
-    pool.enqueue(example_task)
-    pool.dispose()
-"""
-
 import threading
 from typing import Callable, Any, List
 

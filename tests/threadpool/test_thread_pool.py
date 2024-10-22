@@ -38,7 +38,7 @@ def test_multiple_tasks(thread_pool):
 
 def test_pool_size():
     pool = ThreadPool(num_threads=5)
-    time.sleep(0.1)  # We give time to initialize the threads
+    time.sleep(0.1)  # give time to initialize the threads
     assert len(pool.threads) == 5
     pool.dispose()
 
