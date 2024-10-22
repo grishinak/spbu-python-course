@@ -2,6 +2,7 @@ import pytest
 import time
 from project.threadpool.thread_pool import ThreadPool
 
+
 @pytest.fixture
 def thread_pool():
     pool = ThreadPool(num_threads=3)
@@ -19,6 +20,7 @@ def test_enqueue_task(thread_pool):
     time.sleep(0.1)  # give  time to complete the task
     assert result == [1]
 
+
 def test_multiple_tasks(thread_pool):
     result = []
 
@@ -33,20 +35,23 @@ def test_multiple_tasks(thread_pool):
     time.sleep(0.2)  # give  time to complete the task
     assert result == [1, 2]
 
+
 def test_pool_size():
     pool = ThreadPool(num_threads=5)
     time.sleep(0.1)  # We give time to initialize the threads
     assert len(pool.threads) == 5
     pool.dispose()
 
+
 def test_dispose(thread_pool):
     def task():
         time.sleep(0.1)
 
     thread_pool.enqueue(task)
-    time.sleep(0.1)  #give time to complete the task
+    time.sleep(0.1)  # give time to complete the task
     thread_pool.dispose()  # The pool should shut down
     assert all(not thread.is_alive() for thread in thread_pool.threads)
+
 
 def test_multiple_concurrent_tasks(thread_pool):
     result = [0]
@@ -57,5 +62,5 @@ def test_multiple_concurrent_tasks(thread_pool):
 
     for _ in range(5):
         thread_pool.enqueue(increment)
-    time.sleep(0.5)  #give time to complete all tasks
+    time.sleep(0.5)  # give time to complete all tasks
     assert result[0] == 5
