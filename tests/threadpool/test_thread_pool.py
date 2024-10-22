@@ -64,3 +64,11 @@ def test_multiple_concurrent_tasks(thread_pool):
         thread_pool.enqueue(increment)
     time.sleep(0.5)  # give time to complete all tasks
     assert result[0] == 5
+
+
+def test_pool_size_not_less_than_n():
+    n = 5
+    pool = ThreadPool(num_threads=n)
+    time.sleep(0.1)  # give time for initialization of threads
+    assert len(pool.threads) >= n  # check that there are at least n threads in the pool
+    pool.dispose()
