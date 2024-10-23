@@ -61,20 +61,11 @@ def test_multiple_concurrent_tasks(thread_pool):
 
 
 def test_pool_size():
-    initial_thread_count = threading.active_count()
-    pool = ThreadPool(num_threads=5)
-    time.sleep(0.1)  # give time for initialization of threads
-    assert threading.active_count() == initial_thread_count + 5
-    pool.dispose()
-
-
-def test_pool_size_2():
     num_threads = 5
     initial_thread_count = threading.active_count()
     pool = ThreadPool(num_threads)
     time.sleep(0.1)  # give time for initialization of threads
-    new_thread_count = threading.active_count()
-    assert new_thread_count - initial_thread_count == num_threads
+    assert threading.active_count() == initial_thread_count + num_threads
     pool.dispose()
 
 
