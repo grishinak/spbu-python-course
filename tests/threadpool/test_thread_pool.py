@@ -85,9 +85,12 @@ def test_pool_size_not_less_than_n():
     assert len(pool.threads) == n  # check that there are n threads in the pool
     pool.dispose()
 
+
 def test_pool_size_not_less_than_n_2():
     n = 5
     pool = ThreadPool(num_threads=n)
     time.sleep(0.1)  # give time for initialization of threads
-    assert not(len(pool.threads) < n)  # check that there are not less than n threads in the pool
+    assert not (
+        len(pool.threads) < n
+    )  # check that there are not less than n threads in the pool
     pool.dispose()
