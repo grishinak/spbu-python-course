@@ -1,6 +1,7 @@
 from card import Deck
 from bot_player import BotPlayer
 
+
 class BlackjackGame:
     def __init__(self, bots, max_steps=10):
         self.deck = Deck()
@@ -16,7 +17,7 @@ class BlackjackGame:
     def play_round(self):
         self.current_step += 1
         print(f"\nRound {self.current_step}")
-        
+
         # Начальная раздача для всех ботов
         for bot in self.bots:
             bot.reset_hand()
