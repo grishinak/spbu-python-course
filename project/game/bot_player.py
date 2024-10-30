@@ -31,3 +31,20 @@ class RandomBot(BotPlayer):
     def take_turn(self, deck: Deck):
         while self.hand.calculate_score() < 21 and random.choice([True, False]):
             self.hand.add_card(deck.draw_card())
+
+
+class Dealer:
+    def __init__(self):
+        self.name = "Dealer"
+        self.hand = Hand()
+
+    def reset_hand(self):
+        self.hand = Hand()
+
+    def take_turn(self, deck):
+        while self.hand.calculate_score() < 17:
+            self.hand.add_card(deck.draw_card())
+            print(f"{self.name} draws a card: {self.hand.cards[-1]}")
+        print(
+            f"{self.name}'s final hand: {self.hand} (Score: {self.hand.calculate_score()})"
+        )
