@@ -5,10 +5,6 @@ from project.blackjack_game.deck import Deck
 from project.blackjack_game.player import Player, Dealer, Bot
 from project.blackjack_game.game import Game
 
-@pytest.fixture
-def game_setup():
-    game = Game(num_bots=3, rounds=1)
-    return game
 
 @pytest.fixture
 def game_setup():
