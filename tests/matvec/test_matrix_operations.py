@@ -1,5 +1,5 @@
 import pytest
-from project.matrix_operations import (
+from project.matvec.matrix_operations import (
     matrix_addition,
     matrix_multiplication,
     matrix_transpose,

@@ -1,5 +1,5 @@
 import pytest
-from project.vector_oprations import (
+from project.matvec.vector_oprations import (
     dot_product,
     vector_length,
     angle,
