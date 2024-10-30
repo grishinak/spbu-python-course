@@ -1,5 +1,5 @@
 import pytest
-from project.prime_generator import (
+from project.generators.prime_generator import (
     prime_number_generator,
     get_kth_prime,
 )
