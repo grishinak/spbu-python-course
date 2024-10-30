@@ -9,19 +9,33 @@ class BlackjackGame:
         self.current_step = 0
 
     def show_state(self):
-        print(f"Step: {self.current_step}")
+        print(f"\n--- Step {self.current_step} ---")
         for bot in self.bots:
             print(f"{bot.name}: {bot.hand}")
 
     def play_round(self):
         self.current_step += 1
         print(f"\nRound {self.current_step}")
+        
+        # Начальная раздача для всех ботов
         for bot in self.bots:
             bot.reset_hand()
             bot.hand.add_card(self.deck.draw_card())
             bot.hand.add_card(self.deck.draw_card())
-            bot.take_turn(self.deck)
-        self.show_state()
+            print(f"{bot.name} starts with: {bot.hand}")
+
+        # Каждый бот выполняет ход
+        for bot in self.bots:
+            print(f"\n{bot.name} takes turn:")
+            while True:
+                current_score = bot.hand.calculate_score()
+                if current_score >= 21:
+                    print(f"{bot.name} stops (Score: {current_score})")
+                    break
+                # Печатаем руку перед добавлением новой карты
+                print(f"Current hand for {bot.name}: {bot.hand}")
+                bot.hand.add_card(self.deck.draw_card())
+                print(f"New card added. {bot.name}'s hand: {bot.hand}")
 
     def check_winner(self):
         winners = [bot for bot in self.bots if bot.hand.calculate_score() <= 21]
@@ -33,6 +47,7 @@ class BlackjackGame:
     def play_game(self):
         while self.current_step < self.max_steps:
             self.play_round()
+            self.show_state()
             winners = self.check_winner()
             if winners:
                 print("\nWinners:")
