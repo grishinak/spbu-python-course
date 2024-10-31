@@ -13,7 +13,11 @@ class Game:
         :param rounds: The total number of rounds to be played (default is 5).
         """
         self.deck = Deck()
-        self.players: List[Bot] = [Bot(f"Bot {i + 1}") for i in range(num_bots)]
+        strategies = ["Aggressive", "Conservative", "Risky"]
+        self.players: List[Bot] = [
+            Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies)])
+            for i in range(num_bots)
+        ]
         self.dealer = Dealer()
         self.rounds = rounds
         self.current_round = 0

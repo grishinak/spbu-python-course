@@ -75,10 +75,38 @@ class Dealer(Player):
 
 
 class Bot(Player):
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, strategy: str = "Basic") -> None:
         """
-        Initialize a Bot instance.
+        Initialize a Bot instance with a strategy.
 
         :param name: The name of the bot.
+        :param strategy: The bot's playing strategy.
         """
         super().__init__(name)
+        self.strategy = strategy
+
+    def make_move(self, deck: Deck) -> None:
+        """
+        Make the bot's move based on its strategy.
+
+        :param deck: The Deck instance to draw cards from.
+        """
+        print(f"{self.name} ({self.strategy}) making a move...")
+
+        # Implement different moves based on strategy
+        if self.strategy == "Aggressive":
+            while self.calculate_score() < 19:
+                self.add_card(deck.draw())
+                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
+        elif self.strategy == "Conservative":
+            while self.calculate_score() < 15:
+                self.add_card(deck.draw())
+                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
+        elif self.strategy == "Risky":
+            while self.calculate_score() < 20:
+                self.add_card(deck.draw())
+                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
+        else:  # Default to Basic Strategy
+            while self.calculate_score() < 17:
+                self.add_card(deck.draw())
+                print(f"{self.name} draws 🎴 {self.hand[-1]}.")
