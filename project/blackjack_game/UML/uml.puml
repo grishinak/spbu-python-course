@@ -59,5 +59,6 @@ Game --> Bot : manages
 Bot --> Deck : uses
 Dealer --> Deck : uses
 Player --> Card : holds
+Deck --> Card : uses
 
 @enduml
