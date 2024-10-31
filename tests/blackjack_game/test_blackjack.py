@@ -1,9 +1,9 @@
 import pytest
 
-from project.blackjack_game.card import Card
-from project.blackjack_game.deck import Deck
-from project.blackjack_game.player import Player, Dealer, Bot
-from project.blackjack_game.game import Game
+from project.blackjack_game.src.card import Card
+from project.blackjack_game.src.deck import Deck
+from project.blackjack_game.src.player import Player, Dealer, Bot
+from project.blackjack_game.src.game import Game
 
 
 @pytest.fixture
