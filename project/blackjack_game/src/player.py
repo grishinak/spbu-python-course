@@ -1,6 +1,6 @@
 from .deck import Deck
 from .card import Card
-from typing import List, Union
+from typing import List
 
 
 class Player:

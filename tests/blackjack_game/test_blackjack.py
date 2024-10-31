@@ -2,7 +2,6 @@ import pytest
 
 from project.blackjack_game.src.card import Card
 from project.blackjack_game.src.deck import Deck
-from project.blackjack_game.src.player import Player, Dealer, Bot
 from project.blackjack_game.src.game import Game
 
 
@@ -34,14 +33,16 @@ def test_deck_draw(game_setup):
     deck = Deck()
     first_card = deck.draw()
     assert first_card is not None
-    assert len(deck.cards) == 51  # После одной карты в колоде должно остаться 51 карта
+    assert (
+        len(deck.cards) == 51
+    )  # After one card, there should be 51 cards left in the deck
 
 
 @pytest.mark.parametrize(
     "cards, expected_score",
     [
-        (["10 ♥️", "9 ♦️", "3 ♠️"], 22),  # Игрок должен сброситься
-        (["10 ♥️", "8 ♦️", "2 ♠️"], 20),  # Игрок не должен сброситься
+        (["10 ♥️", "9 ♦️", "3 ♠️"], 22),  # The player must bust
+        (["10 ♥️", "8 ♦️", "2 ♠️"], 20),  # The player must not bust
     ],
 )
 def test_player_busts(cards, expected_score, game_setup):
@@ -55,8 +56,11 @@ def test_player_busts(cards, expected_score, game_setup):
 @pytest.mark.parametrize(
     "bet_amount, expected_balance",
     [
-        (50, 150),  # допустимая ставка
-        (300, 200),  # превышение баланса
+        (50, 150),  # acceptable bet
+        (
+            300,
+            200,
+        ),  # exceeding the balance (no bet) (in bot game its impossible, checking the func)
     ],
 )
 def test_betting(game_setup, bet_amount, expected_balance):
@@ -65,35 +69,37 @@ def test_betting(game_setup, bet_amount, expected_balance):
             game_setup.players[0].set_bet(bet_amount)
     else:
         game_setup.players[0].set_bet(bet_amount)
-        game_setup.players[0].adjust_balance(-bet_amount)  # Уменьшаем баланс на ставку
+        game_setup.players[0].adjust_balance(
+            -bet_amount
+        )  # Reducing the balance by a bet
         assert (
             game_setup.players[0].balance == expected_balance
-        )  # Проверка баланса после установки ставки
+        )  # Checking the balance after setting the bet
 
 
 def test_winner_determination(game_setup):
-    # Устанавливаем ставки
-    game_setup.players[0].set_bet(50)  # Первый игрок ставит 50
-    game_setup.players[1].set_bet(100)  # Второй игрок ставит 100
-    game_setup.players[2].set_bet(150)  # Третий игрок ставит 150
+    # Setting the bets
+    game_setup.players[0].set_bet(50)  # The first player bets 50
+    game_setup.players[1].set_bet(100)  # The second player bets  100
+    game_setup.players[2].set_bet(150)  # The third player bets 150
 
     # Добавляем карты игрокам
-    game_setup.players[0].add_card(Card("10", "♥️"))  # Счет 10
-    game_setup.players[0].add_card(Card("4", "♦️"))  # Счет 14
+    game_setup.players[0].add_card(Card("10", "♥️"))  # score 10
+    game_setup.players[0].add_card(Card("4", "♦️"))  # score 14
 
-    game_setup.players[1].add_card(Card("Q", "♠️"))  # Счет 10
-    game_setup.players[1].add_card(Card("7", "♣️"))  # Счет 17
+    game_setup.players[1].add_card(Card("Q", "♠️"))  # score 10
+    game_setup.players[1].add_card(Card("7", "♣️"))  # score 17
 
-    game_setup.players[2].add_card(Card("K", "♦️"))  # Счет 10
-    game_setup.players[2].add_card(Card("5", "♥️"))  # Счет 15
+    game_setup.players[2].add_card(Card("K", "♦️"))  # score 10
+    game_setup.players[2].add_card(Card("5", "♥️"))  # score 15
 
-    game_setup.dealer.add_card(Card("9", "♣️"))  # Счет 9
-    game_setup.dealer.add_card(Card("6", "♠️"))  # Счет 15
+    game_setup.dealer.add_card(Card("9", "♣️"))  # score 9
+    game_setup.dealer.add_card(Card("6", "♠️"))  # score 15
 
-    # Определяем победителя
     game_setup.determine_winner()
 
-    # Проверяем балансы после определения победителя
-    assert game_setup.players[0].balance == 150  # Первый игрок проиграл 50
-    assert game_setup.players[1].balance == 300  # Второй игрок выиграл 100
-    assert game_setup.players[2].balance == 200  # Третий игрок в ничью 150
+    assert game_setup.players[0].balance == 150  # player lost 50
+    assert game_setup.players[1].balance == 300  #  player win 100
+    assert (
+        game_setup.players[2].balance == 200
+    )  #  player ties with bet of 150 - balance stays 200
