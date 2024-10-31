@@ -1,0 +1,63 @@
+@startuml
+
+class Card {
+    +__init__(rank: str, suit: str)
+    +__str__() : str
+    +value() : int
+}
+
+class Deck {
+    +__init__()
+    +draw() : Card
+}
+
+class Player {
+    +__init__(name: str)
+    +set_bet(amount: int)
+    +adjust_balance(amount: int)
+    +add_card(card: Card)
+    +calculate_score() : int
+    +make_move(deck: Deck)
+    -hand: List<Card>
+    -balance: int
+    -bet: int
+}
+
+class Dealer {
+    +__init__()
+}
+
+class Bot {
+    +__init__(name: str, strategy: str)
+    +make_move(deck: Deck)
+    -strategy: str
+}
+
+class Game {
+    +__init__(num_bots: int, rounds: int)
+    +set_bets()
+    +deal_initial_cards()
+    +show_hands()
+    +play_round()
+    +determine_winner()
+    +reset_game()
+    +play()
+    -deck: Deck
+    -players: List<Bot>
+    -dealer: Dealer
+    -rounds: int
+    -current_round: int
+}
+
+Player <|-- Dealer : inherits
+Player <|-- Bot : inherits
+
+Game --> Deck : uses
+Game --> Player : manages
+Game --> Dealer : manages
+Game --> Bot : manages
+Bot --> Deck : uses
+Dealer --> Deck : uses
+Player --> Card : holds
+
+@enduml
