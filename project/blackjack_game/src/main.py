@@ -1,9 +1,5 @@
 from .game import Game
 
-# if there are import by ".module" and not "module" it doesnt find the files but testscript does
-# though, if in src files import without ".", then the tests dont find files, but main does.
-# ???
-
 
 def main() -> None:
     """
