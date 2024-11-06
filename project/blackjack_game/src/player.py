@@ -1,6 +1,6 @@
 from .deck import Deck
 from .card import Card
-from typing import List
+from typing import List, TypedDict
 
 # strategies(replace to another file?)
 class Strategy:
@@ -46,7 +46,7 @@ class BasicStrategy(Strategy):
 
 class AdaptiveStrategy(Strategy):
     def make_move(self, bot: "Bot", deck: Deck) -> None:
-        # will use the results of the last rounds
+        # Will use the results of the last rounds
         if len(bot.history["results"]) > 0:
             last_result = bot.history["results"][-1]
             last_bet = bot.history["bets"][-1]
@@ -60,9 +60,6 @@ class AdaptiveStrategy(Strategy):
             else:
                 print(f"{bot.name} is following a basic strategy.")
                 self.play_basic(bot, deck)
-        else:
-            print(f"{bot.name} has no history, using basic strategy.")
-            self.play_basic(bot, deck)
 
     def play_aggressive(self, bot: "Bot", deck: Deck) -> None:
         """
@@ -163,26 +160,32 @@ class Dealer(Player):
         super().__init__("Dealer")
 
 
+class HistoryDict(TypedDict):
+    bets: List[int]
+    results: List[str]
+
+
 class Bot(Player):
     def __init__(self, name: str, strategy: Strategy) -> None:
         super().__init__(name)
         self.strategy = strategy
-        self.history = {
-            "bets": [],
-            "results": [],  # History of results (win, lose, tie) for each round
+        # Define history with clear types for bets and results
+        self.history: HistoryDict = {
+            "bets": [],  # List of bet amounts (integers)
+            "results": [],  # List of game results (strings: "win", "lose", "tie")
         }
 
     def add_history(self, bet: int, result: str) -> None:
         """
-        Adds information about the bet and the result to the history for the current round.
-        :param bet: The amount of the bet.
-        :param result: game result (win, lose, tie).
+        Add bet and result information to the history for the current round.
+        :param bet: The bet amount.
+        :param result: The result of the game (win, lose, tie).
         """
         self.history["bets"].append(bet)
         self.history["results"].append(result)
 
     def make_move(self, deck: Deck) -> None:
         """
-        Performs a move based on the current strategy.
+        Make a move based on the current strategy.
         """
         self.strategy.make_move(self, deck)
