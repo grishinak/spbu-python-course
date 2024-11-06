@@ -1,13 +1,40 @@
+from enum import Enum
+
+
+class Suit(Enum):
+    SPADES = "♠️"
+    HEARTS = "♥️"
+    DIAMONDS = "♦️"
+    CLUBS = "♣️"
+
+    def __str__(self):
+        return self.value
+
+
 class Card:
-    def __init__(self, rank: str, suit: str) -> None:
+    def __init__(self, rank: str, suit: Suit) -> None:
         """
         Initializes a card object.
 
         :param rank: The rank of the card (e.g., "A", "K", "4", "7").
-        :param suit: The suit of the card (e.g., "♠️", "♥️", "♦️", "♣️").
+        :param suit: The suit of the card (e.g., Suit.SPADES, Suit.HEARTS).
         """
         self.rank = rank
         self.suit = suit
+
+    def value(self) -> int:
+        """
+        Returns the blackjack value of the card.
+        Face cards (J, Q, K) count as 10, and an Ace (A) counts as 11.
+
+        :return: The value of the card for blackjack.
+        """
+        if self.rank in ["J", "Q", "K"]:
+            return 10
+        elif self.rank == "A":
+            return 11
+        else:
+            return int(self.rank)
 
     def __str__(self) -> str:
         """
@@ -16,16 +43,3 @@ class Card:
         :return: A string representing the card.
         """
         return f"{self.rank} {self.suit}"
-
-    def value(self) -> int:
-        """
-        Returns the numeric value of the card for the game.
-
-        :return: The value of the card (11 for Ace, 10 for Jack, Queen, and King, otherwise the rank as an integer).
-        """
-        if self.rank in ["J", "Q", "K"]:
-            return 10
-        elif self.rank == "A":
-            return 11
-        else:
-            return int(self.rank)

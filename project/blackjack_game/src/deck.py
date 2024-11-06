@@ -1,6 +1,6 @@
+from .card import Card, Suit
 import random
 from typing import List
-from .card import Card
 
 
 class Deck:
@@ -13,7 +13,7 @@ class Deck:
         - Suits: ♠️, ♥️, ♦️, ♣️
         """
         ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        suits = ["♠️", "♥️", "♦️", "♣️"]
+        suits = [Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS, Suit.CLUBS]
         self.cards: List[Card] = [Card(rank, suit) for rank in ranks for suit in suits]
         random.shuffle(self.cards)
 
@@ -24,4 +24,6 @@ class Deck:
         :return: A Card object representing the drawn card.
         :raises IndexError: If the deck is empty.
         """
+        if not self.cards:
+            raise IndexError("The deck is empty")
         return self.cards.pop()
