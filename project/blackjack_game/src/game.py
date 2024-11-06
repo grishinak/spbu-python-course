@@ -1,6 +1,6 @@
 import random
 from .deck import Deck
-from .player import Bot, Dealer
+from .player import Bot, Dealer, AggressiveStrategy, ConservativeStrategy, RiskyStrategy
 from typing import List
 
 
@@ -13,7 +13,7 @@ class Game:
         :param rounds: The total number of rounds to be played (default is 5).
         """
         self.deck = Deck()
-        strategies = ["Aggressive", "Conservative", "Risky"]
+        strategies = [AggressiveStrategy(), ConservativeStrategy(), RiskyStrategy()]
         self.players: List[Bot] = [
             Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies)])
             for i in range(num_bots)
@@ -21,6 +21,7 @@ class Game:
         self.dealer = Dealer()
         self.rounds = rounds
         self.current_round = 0
+
 
     def set_bets(self) -> None:
         """

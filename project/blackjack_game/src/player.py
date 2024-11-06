@@ -2,6 +2,38 @@ from .deck import Deck
 from .card import Card
 from typing import List
 
+# strategies(replace to another file?)
+class Strategy:
+    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+        raise NotImplementedError("This method should be overridden in subclasses.")
+
+class AggressiveStrategy(Strategy):
+    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+        while bot.calculate_score() < 19:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+
+class ConservativeStrategy(Strategy):
+    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+        while bot.calculate_score() < 15:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+
+class RiskyStrategy(Strategy):
+    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+        while bot.calculate_score() < 20:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+
+
+class BasicStrategy(Strategy):
+    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+        while bot.calculate_score() < 17:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+
+
+# main player class
 
 class Player:
     def __init__(self, name: str) -> None:
@@ -75,38 +107,12 @@ class Dealer(Player):
 
 
 class Bot(Player):
-    def __init__(self, name: str, strategy: str = "Basic") -> None:
-        """
-        Initialize a Bot instance with a strategy.
-
-        :param name: The name of the bot.
-        :param strategy: The bot's playing strategy.
-        """
+    def __init__(self, name: str, strategy: Strategy) -> None:
         super().__init__(name)
-        self.strategy = strategy
+        self.strategy = strategy  # Тип strategy теперь Strategy
 
     def make_move(self, deck: Deck) -> None:
         """
-        Make the bot's move based on its strategy.
-
-        :param deck: The Deck instance to draw cards from.
+        Makes a move based on the current strategy.
         """
-        print(f"{self.name} ({self.strategy}) making a move...")
-
-        # Implement different moves based on strategy
-        if self.strategy == "Aggressive":
-            while self.calculate_score() < 19:
-                self.add_card(deck.draw())
-                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
-        elif self.strategy == "Conservative":
-            while self.calculate_score() < 15:
-                self.add_card(deck.draw())
-                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
-        elif self.strategy == "Risky":
-            while self.calculate_score() < 20:
-                self.add_card(deck.draw())
-                print(f"{self.name} ({self.strategy}) draws 🎴 {self.hand[-1]}.")
-        else:  # Default to Basic Strategy
-            while self.calculate_score() < 17:
-                self.add_card(deck.draw())
-                print(f"{self.name} draws 🎴 {self.hand[-1]}.")
+        self.strategy.make_move(self, deck)
