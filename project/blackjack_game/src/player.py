@@ -4,36 +4,48 @@ from typing import List
 
 # strategies(replace to another file?)
 class Strategy:
-    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
         raise NotImplementedError("This method should be overridden in subclasses.")
 
+
 class AggressiveStrategy(Strategy):
-    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
         while bot.calculate_score() < 19:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(
+                f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}."
+            )
+
 
 class ConservativeStrategy(Strategy):
-    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
         while bot.calculate_score() < 15:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(
+                f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}."
+            )
+
 
 class RiskyStrategy(Strategy):
-    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
         while bot.calculate_score() < 20:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(
+                f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}."
+            )
 
 
 class BasicStrategy(Strategy):
-    def make_move(self, bot: 'Bot', deck: Deck) -> None:
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
         while bot.calculate_score() < 17:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(
+                f"{bot.name} ({bot.strategy.__class__.__name__}) draws 🎴 {bot.hand[-1]}."
+            )
 
 
 # main player class
+
 
 class Player:
     def __init__(self, name: str) -> None:

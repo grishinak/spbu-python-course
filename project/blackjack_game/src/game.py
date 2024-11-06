@@ -22,7 +22,6 @@ class Game:
         self.rounds = rounds
         self.current_round = 0
 
-
     def set_bets(self) -> None:
         """
         Sets bets for all players by randomly selecting a bet amount
