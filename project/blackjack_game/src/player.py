@@ -121,7 +121,7 @@ class Dealer(Player):
 class Bot(Player):
     def __init__(self, name: str, strategy: Strategy) -> None:
         super().__init__(name)
-        self.strategy = strategy  # Тип strategy теперь Strategy
+        self.strategy = strategy
 
     def make_move(self, deck: Deck) -> None:
         """

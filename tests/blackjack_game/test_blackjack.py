@@ -83,7 +83,6 @@ def test_winner_determination(game_setup):
     game_setup.players[1].set_bet(100)  # The second player bets  100
     game_setup.players[2].set_bet(150)  # The third player bets 150
 
-    # Добавляем карты игрокам
     game_setup.players[0].add_card(Card("10", "♥️"))  # score 10
     game_setup.players[0].add_card(Card("4", "♦️"))  # score 14
 
