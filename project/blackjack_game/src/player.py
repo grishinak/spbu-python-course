@@ -44,6 +44,51 @@ class BasicStrategy(Strategy):
             )
 
 
+class AdaptiveStrategy(Strategy):
+    def make_move(self, bot: "Bot", deck: Deck) -> None:
+        # will use the results of the last rounds
+        if len(bot.history["results"]) > 0:
+            last_result = bot.history["results"][-1]
+            last_bet = bot.history["bets"][-1]
+
+            if last_result == "lose":
+                print(f"{bot.name} is playing more conservatively after a loss.")
+                self.play_conservative(bot, deck)
+            elif last_result == "win" and last_bet > 50:
+                print(f"{bot.name} is playing aggressively after a big win.")
+                self.play_aggressive(bot, deck)
+            else:
+                print(f"{bot.name} is following a basic strategy.")
+                self.play_basic(bot, deck)
+        else:
+            print(f"{bot.name} has no history, using basic strategy.")
+            self.play_basic(bot, deck)
+
+    def play_aggressive(self, bot: "Bot", deck: Deck) -> None:
+        """
+        Play aggressively: pull the cards until the amount is 19 or more.
+        """
+        while bot.calculate_score() < 19:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} (Aggressive) draws 🎴 {bot.hand[-1]}.")
+
+    def play_conservative(self, bot: "Bot", deck: Deck) -> None:
+        """
+        Play carefully: pull the cards until the amount is 15 or more.
+        """
+        while bot.calculate_score() < 15:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} (Conservative) draws 🎴 {bot.hand[-1]}.")
+
+    def play_basic(self, bot: "Bot", deck: Deck) -> None:
+        """
+        The standard strategy is to pull the cards until the amount is 17 or more.
+        """
+        while bot.calculate_score() < 17:
+            bot.add_card(deck.draw())
+            print(f"{bot.name} (Basic) draws 🎴 {bot.hand[-1]}.")
+
+
 # main player class
 
 
@@ -122,9 +167,22 @@ class Bot(Player):
     def __init__(self, name: str, strategy: Strategy) -> None:
         super().__init__(name)
         self.strategy = strategy
+        self.history = {
+            "bets": [],
+            "results": [],  # История результатов (win, lose, tie) для каждого раунда
+        }
+
+    def add_history(self, bet: int, result: str) -> None:
+        """
+        Добавляет информацию о ставке и результате в историю для текущего раунда.
+        :param bet: Сумма ставки.
+        :param result: Результат игры (win, lose, tie).
+        """
+        self.history["bets"].append(bet)
+        self.history["results"].append(result)
 
     def make_move(self, deck: Deck) -> None:
         """
-        Makes a move based on the current strategy.
+        Выполняет ход на основе текущей стратегии.
         """
         self.strategy.make_move(self, deck)

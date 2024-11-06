@@ -1,6 +1,13 @@
 import random
 from .deck import Deck
-from .player import Bot, Dealer, AggressiveStrategy, ConservativeStrategy, RiskyStrategy
+from .player import (
+    Bot,
+    Dealer,
+    AggressiveStrategy,
+    ConservativeStrategy,
+    RiskyStrategy,
+    AdaptiveStrategy,
+)
 from typing import List
 
 
@@ -8,16 +15,20 @@ class Game:
     def __init__(self, num_bots: int = 3, rounds: int = 5) -> None:
         """
         Initializes a game of Blackjack with a specified number of bots and rounds.
-
-        :param num_bots: The number of bot players (default is 3).
-        :param rounds: The total number of rounds to be played (default is 5).
         """
         self.deck = Deck()
-        strategies = [AggressiveStrategy(), ConservativeStrategy(), RiskyStrategy()]
+        strategies = [
+            AggressiveStrategy(),
+            ConservativeStrategy(),
+            RiskyStrategy(),
+            AdaptiveStrategy(),
+        ]
+
         self.players: List[Bot] = [
-            Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies)])
+            Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies) + 1])
             for i in range(num_bots)
         ]
+
         self.dealer = Dealer()
         self.rounds = rounds
         self.current_round = 0
@@ -82,17 +93,25 @@ class Game:
         dealer_score = self.dealer.calculate_score()
         for player in self.players:
             player_score = player.calculate_score()
+            result = ""
             if player_score > 21:
                 print(f"{player.name} 🔥 busts! Loses 💸 {player.bet}.")
                 player.adjust_balance(-player.bet)
+                result = "lose"
             elif dealer_score > 21 or player_score > dealer_score:
                 print(f"{player.name} 🏆 wins! Gains 💵 {player.bet}.")
                 player.adjust_balance(player.bet)
+                result = "win"
             elif player_score == dealer_score:
                 print(f"{player.name} 🤝 ties with the dealer. Returns 💰 {player.bet}.")
+                result = "tie"
             else:
                 print(f"{player.name} ❌ loses to the dealer. Loses 💸 {player.bet}.")
                 player.adjust_balance(-player.bet)
+                result = "lose"
+
+            # Adding the bet and result to the history for the current round
+            player.add_history(player.bet, result)
 
     def reset_game(self) -> None:
         """
