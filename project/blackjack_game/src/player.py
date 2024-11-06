@@ -169,20 +169,20 @@ class Bot(Player):
         self.strategy = strategy
         self.history = {
             "bets": [],
-            "results": [],  # История результатов (win, lose, tie) для каждого раунда
+            "results": [],  # History of results (win, lose, tie) for each round
         }
 
     def add_history(self, bet: int, result: str) -> None:
         """
-        Добавляет информацию о ставке и результате в историю для текущего раунда.
-        :param bet: Сумма ставки.
-        :param result: Результат игры (win, lose, tie).
+        Adds information about the bet and the result to the history for the current round.
+        :param bet: The amount of the bet.
+        :param result: game result (win, lose, tie).
         """
         self.history["bets"].append(bet)
         self.history["results"].append(result)
 
     def make_move(self, deck: Deck) -> None:
         """
-        Выполняет ход на основе текущей стратегии.
+        Performs a move based on the current strategy.
         """
         self.strategy.make_move(self, deck)
