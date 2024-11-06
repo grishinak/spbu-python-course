@@ -80,7 +80,7 @@ class Game:
             print(f"{player.name} ends with score {player.calculate_score()}")
 
         while self.dealer.calculate_score() < 17:
-            self.dealer.add_card(self.deck.draw())
+            self.dealer.make_move(self.deck)
         print(f"Dealer ends with score {self.dealer.calculate_score()}")
 
         self.determine_winner()
