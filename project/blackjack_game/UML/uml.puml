@@ -103,12 +103,12 @@ Deck "1" *-- "*" Card
 
 Player "1" o-- "*" Card
 
-Bot "1" --> "1" Strategy 
-Bot -->  HistoryDict 
+Bot "1" --> "1" Strategy
+Bot -->  HistoryDict
 
-Game "1" *-- "1" Deck 
-Game "1" *-- "*" Player 
-Game "1" *-- "1" Dealer 
+Game "1" *-- "1" Deck
+Game "1" *-- "*" Player
+Game "1" *-- "1" Dealer
 
 Player <|-- Dealer
 Player <|-- Bot
