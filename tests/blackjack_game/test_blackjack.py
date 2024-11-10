@@ -12,7 +12,7 @@ def game_setup():
 
 
 def test_initial_balance(game_setup):
-    for player in game_setup.players:
+    for player in game_setup._players:
         assert player._balance == 200
 
 
@@ -46,7 +46,7 @@ def test_deck_draw(game_setup):
     ],
 )
 def test_player_busts(cards, expected_score, game_setup):
-    player = game_setup.players[0]
+    player = game_setup._players[0]
     for card_str in cards:
         rank, suit = card_str.split()
         player.add_card(Card(rank, suit))
@@ -66,39 +66,39 @@ def test_player_busts(cards, expected_score, game_setup):
 def test_betting(game_setup, bet_amount, expected_balance):
     if bet_amount > 200:
         with pytest.raises(ValueError):
-            game_setup.players[0].set_bet(bet_amount)
+            game_setup._players[0].set_bet(bet_amount)
     else:
-        game_setup.players[0].set_bet(bet_amount)
-        game_setup.players[0].adjust_balance(
+        game_setup._players[0].set_bet(bet_amount)
+        game_setup._players[0].adjust_balance(
             -bet_amount
         )  # Reducing the balance by a bet
         assert (
-            game_setup.players[0]._balance == expected_balance
+            game_setup._players[0]._balance == expected_balance
         )  # Checking the balance after setting the bet
 
 
 def test_winner_determination(game_setup):
     # Setting the bets
-    game_setup.players[0].set_bet(50)  # The first player bets 50
-    game_setup.players[1].set_bet(100)  # The second player bets  100
-    game_setup.players[2].set_bet(150)  # The third player bets 150
+    game_setup._players[0].set_bet(50)  # The first player bets 50
+    game_setup._players[1].set_bet(100)  # The second player bets  100
+    game_setup._players[2].set_bet(150)  # The third player bets 150
 
-    game_setup.players[0].add_card(Card("10", "♥️"))  # score 10
-    game_setup.players[0].add_card(Card("4", "♦️"))  # score 14
+    game_setup._players[0].add_card(Card("10", "♥️"))  # score 10
+    game_setup._players[0].add_card(Card("4", "♦️"))  # score 14
 
-    game_setup.players[1].add_card(Card("Q", "♠️"))  # score 10
-    game_setup.players[1].add_card(Card("7", "♣️"))  # score 17
+    game_setup._players[1].add_card(Card("Q", "♠️"))  # score 10
+    game_setup._players[1].add_card(Card("7", "♣️"))  # score 17
 
-    game_setup.players[2].add_card(Card("K", "♦️"))  # score 10
-    game_setup.players[2].add_card(Card("5", "♥️"))  # score 15
+    game_setup._players[2].add_card(Card("K", "♦️"))  # score 10
+    game_setup._players[2].add_card(Card("5", "♥️"))  # score 15
 
-    game_setup.dealer.add_card(Card("9", "♣️"))  # score 9
-    game_setup.dealer.add_card(Card("6", "♠️"))  # score 15
+    game_setup._dealer.add_card(Card("9", "♣️"))  # score 9
+    game_setup._dealer.add_card(Card("6", "♠️"))  # score 15
 
-    game_setup.determine_winner()
+    game_setup._determine_winner()
 
-    assert game_setup.players[0]._balance == 150  # player lost 50
-    assert game_setup.players[1]._balance == 300  #  player win 100
+    assert game_setup._players[0]._balance == 150  # player lost 50
+    assert game_setup._players[1]._balance == 300  #  player win 100
     assert (
-        game_setup.players[2]._balance == 200
+        game_setup._players[2]._balance == 200
     )  #  player ties with bet of 150 - balance stays 200

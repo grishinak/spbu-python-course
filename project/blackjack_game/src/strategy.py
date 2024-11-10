@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING
 
 # use to prevent circular imports
 if TYPE_CHECKING:
-    from player import Bot  
-    from deck import Deck   
+    from player import Bot
+    from deck import Deck
+
 
 class Strategy:
     """
@@ -31,13 +32,14 @@ class AggressiveStrategy(Strategy):
     :param bot: The bot instance that will make a move.
     :param deck: The deck from which cards will be drawn.
     """
+
     def make_move(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the aggressive strategy: draws cards until the bot's score is at least 19.
 
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
-        """          
+        """
         while bot.calculate_score() < 19:
             bot.add_card(deck.draw())
             print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
@@ -50,13 +52,14 @@ class ConservativeStrategy(Strategy):
     :param bot: The bot instance that will make a move.
     :param deck: The deck from which cards will be drawn.
     """
+
     def make_move(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the conservative strategy: draws cards until the bot's score is at least 15.
 
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
-        """    
+        """
         while bot.calculate_score() < 15:
             bot.add_card(deck.draw())
             print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
@@ -69,13 +72,14 @@ class RiskyStrategy(Strategy):
     :param bot: The bot instance that will make a move.
     :param deck: The deck from which cards will be drawn.
     """
+
     def make_move(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the risky strategy: draws cards until the bot's score is at least 20.
 
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
-        """    
+        """
         while bot.calculate_score() < 20:
             bot.add_card(deck.draw())
             print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
@@ -88,13 +92,14 @@ class BasicStrategy(Strategy):
     :param bot: The bot instance that will make a move.
     :param deck: The deck from which cards will be drawn.
     """
+
     def make_move(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the basic strategy: draws cards until the bot's score is at least 17.
 
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
-        """    
+        """
         while bot.calculate_score() < 17:
             bot.add_card(deck.draw())
             print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
@@ -107,6 +112,7 @@ class AdaptiveStrategy(Strategy):
     :param bot: The bot instance that will make a move.
     :param deck: The deck from which cards will be drawn.
     """
+
     def make_move(self, bot: "Bot", deck: "Deck") -> None:
         """
         Adjusts the bot's strategy based on the results of the previous round and bet.
@@ -156,7 +162,7 @@ class AdaptiveStrategy(Strategy):
 
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
-        """    
+        """
         while bot.calculate_score() < 17:
             bot.add_card(deck.draw())
             print(f"{bot.name} (Basic) draws 🎴 {bot._hand[-1]}.")
