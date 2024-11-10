@@ -10,7 +10,7 @@ class Deck:
 
         This deck contains cards of all ranks and suits:
         - Ranks: 2 through 10, J, Q, K, A
-        - Suits: ♠️, ♥️, ♦️, ♣️
+        - Suits: SPADES, HEARTS, DIAMONDS, CLUBS
         """
         ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         suits = [Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS, Suit.CLUBS]

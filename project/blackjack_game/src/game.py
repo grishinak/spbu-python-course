@@ -1,11 +1,11 @@
 import random
 from .deck import Deck
-from .player import (
-    Bot,
-    Dealer,
+from .player import Bot, Dealer
+from .strategy import (
     AggressiveStrategy,
     ConservativeStrategy,
     RiskyStrategy,
+    BasicStrategy,
     AdaptiveStrategy,
 )
 from typing import List
@@ -20,12 +20,13 @@ class Game:
         strategies = [
             AggressiveStrategy(),
             ConservativeStrategy(),
-            RiskyStrategy(),
             AdaptiveStrategy(),
+            RiskyStrategy(),
+            BasicStrategy(),
         ]
 
         self.players: List[Bot] = [
-            Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies) + 1])
+            Bot(f"Bot {i + 1}", strategy=strategies[i % len(strategies)])
             for i in range(num_bots)
         ]
 
