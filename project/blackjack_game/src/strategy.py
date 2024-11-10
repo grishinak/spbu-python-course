@@ -120,15 +120,15 @@ class AdaptiveStrategy(Strategy):
 
             if last_result == "lose":
                 print(f"{bot.name} is playing more conservatively after a loss.")
-                self.play_conservative(bot, deck)
+                self._play_conservative(bot, deck)
             elif last_result == "win" and last_bet > 50:
                 print(f"{bot.name} is playing aggressively after a big win.")
-                self.play_aggressive(bot, deck)
+                self._play_aggressive(bot, deck)
             else:
                 print(f"{bot.name} is following a basic strategy.")
-                self.play_basic(bot, deck)
+                self._play_basic(bot, deck)
 
-    def play_aggressive(self, bot: "Bot", deck: "Deck") -> None:
+    def _play_aggressive(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the aggressive strategy: draws cards until the bot's score is at least 19.
 
@@ -139,7 +139,7 @@ class AdaptiveStrategy(Strategy):
             bot.add_card(deck.draw())
             print(f"{bot.name} (Aggressive) draws 🎴 {bot._hand[-1]}.")
 
-    def play_conservative(self, bot: "Bot", deck: "Deck") -> None:
+    def _play_conservative(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the conservative strategy: draws cards until the bot's score is at least 15.
 
@@ -150,7 +150,7 @@ class AdaptiveStrategy(Strategy):
             bot.add_card(deck.draw())
             print(f"{bot.name} (Conservative) draws 🎴 {bot._hand[-1]}.")
 
-    def play_basic(self, bot: "Bot", deck: "Deck") -> None:
+    def _play_basic(self, bot: "Bot", deck: "Deck") -> None:
         """
         Executes the basic strategy: draws cards until the bot's score is at least 17.
 
