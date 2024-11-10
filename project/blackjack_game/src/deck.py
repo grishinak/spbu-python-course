@@ -14,8 +14,8 @@ class Deck:
         """
         ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         suits = [Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS, Suit.CLUBS]
-        self.cards: List[Card] = [Card(rank, suit) for rank in ranks for suit in suits]
-        random.shuffle(self.cards)
+        self._cards: List[Card] = [Card(rank, suit) for rank in ranks for suit in suits]
+        random.shuffle(self._cards)
 
     def draw(self) -> Card:
         """
@@ -24,6 +24,6 @@ class Deck:
         :return: A Card object representing the drawn card.
         :raises IndexError: If the deck is empty.
         """
-        if not self.cards:
+        if not self._cards:
             raise IndexError("The deck is empty")
-        return self.cards.pop()
+        return self._cards.pop()

@@ -24,9 +24,9 @@ class Player:
         :param name: The name of the player.
         """
         self.name: str = name
-        self.hand: List[Card] = []
-        self.balance: int = 200
-        self.bet: int = 0
+        self._hand: List[Card] = []
+        self._balance: int = 200
+        self._bet: int = 0
 
     def set_bet(self, amount: int) -> None:
         """
@@ -35,9 +35,9 @@ class Player:
         :param amount: The bet amount to set.
         :raises ValueError: If the bet exceeds the player's balance.
         """
-        if amount > self.balance:
+        if amount > self._balance:
             raise ValueError("Bet exceeds balance")
-        self.bet = amount
+        self._bet = amount
 
     def adjust_balance(self, amount: int) -> None:
         """
@@ -45,7 +45,7 @@ class Player:
 
         :param amount: The amount to adjust the balance by (can be positive or negative).
         """
-        self.balance += amount
+        self._balance += amount
 
     def add_card(self, card: Card) -> None:
         """
@@ -53,7 +53,7 @@ class Player:
 
         :param card: The Card instance to add to the hand.
         """
-        self.hand.append(card)
+        self._hand.append(card)
 
     def calculate_score(self) -> int:
         """
@@ -61,8 +61,8 @@ class Player:
 
         :return: The calculated score, with Aces counted as 1 or 11 as appropriate.
         """
-        score: int = sum(card.value() for card in self.hand)
-        aces: int = sum(1 for card in self.hand if card.rank == "A")
+        score: int = sum(card.value() for card in self._hand)
+        aces: int = sum(1 for card in self._hand if card._rank == "A")
         while score > 21 and aces:
             score -= 10
             aces -= 1
@@ -76,7 +76,7 @@ class Player:
         """
         while self.calculate_score() < 17:
             self.add_card(deck.draw())
-            print(f"{self.name} draws 🎴 {self.hand[-1]}.")
+            print(f"{self.name} draws 🎴 {self._hand[-1]}.")
 
 
 class Dealer(Player):
@@ -93,25 +93,25 @@ class Bot(Player):
         Initialize a Bot instance.
         """
         super().__init__(name)
-        self.strategy = strategy
+        self._strategy = strategy
         # Define history with clear types for bets and results
-        self.history: HistoryDict = {
+        self._history: HistoryDict = {
             "bets": [],  # List of bet amounts (integers)
             "results": [],  # List of game results (strings: "win", "lose", "tie")
         }
 
-    def add_history(self, bet: int, result: str) -> None:
+    def _add_history(self, bet: int, result: str) -> None:
         """
         Add bet and result information to the history for the current round.
 
         :param bet: The bet amount.
         :param result: The result of the game (win, lose, tie).
         """
-        self.history["bets"].append(bet)
-        self.history["results"].append(result)
+        self._history["bets"].append(bet)
+        self._history["results"].append(result)
 
     def make_move(self, deck: Deck) -> None:
         """
         Make a move based on the current strategy.
         """
-        self.strategy.make_move(self, deck)
+        self._strategy.make_move(self, deck)

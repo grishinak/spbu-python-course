@@ -40,17 +40,17 @@ class Game:
         within the player's balance.
         """
         for player in self.players:
-            bet = random.randint(1, min(100, player.balance))
+            bet = random.randint(1, min(100, player._balance))
             player.set_bet(bet)
-            print(f"{player.name} bets 💰 {player.bet}")
+            print(f"{player.name} bets 💰 {player._bet}")
 
     def deal_initial_cards(self) -> None:
         """
         Deals two initial cards to each player and the dealer.
         """
         for player in self.players:
-            player.hand = [self.deck.draw(), self.deck.draw()]
-        self.dealer.hand = [self.deck.draw(), self.deck.draw()]
+            player._hand = [self.deck.draw(), self.deck.draw()]
+        self.dealer._hand = [self.deck.draw(), self.deck.draw()]
 
     def show_hands(self) -> None:
         """
@@ -58,11 +58,11 @@ class Game:
         """
         for player in self.players:
             print(
-                f"{player.name} 🃏 hand: {', '.join(map(str, player.hand))}, "
-                f"Score: {player.calculate_score()} 💰 Bet: {player.bet}, Balance: {player.balance}"
+                f"{player.name} 🃏 hand: {', '.join(map(str, player._hand))}, "
+                f"Score: {player.calculate_score()} 💰 Bet: {player._bet}, Balance: {player._balance}"
             )
         print(
-            f"Dealer 🃏 hand: {', '.join(map(str, self.dealer.hand))}, "
+            f"Dealer 🃏 hand: {', '.join(map(str, self.dealer._hand))}, "
             f"Score: {self.dealer.calculate_score()}"
         )
 
@@ -96,23 +96,23 @@ class Game:
             player_score = player.calculate_score()
             result = ""
             if player_score > 21:
-                print(f"{player.name} 🔥 busts! Loses 💸 {player.bet}.")
-                player.adjust_balance(-player.bet)
+                print(f"{player.name} 🔥 busts! Loses 💸 {player._bet}.")
+                player.adjust_balance(-player._bet)
                 result = "lose"
             elif dealer_score > 21 or player_score > dealer_score:
-                print(f"{player.name} 🏆 wins! Gains 💵 {player.bet}.")
-                player.adjust_balance(player.bet)
+                print(f"{player.name} 🏆 wins! Gains 💵 {player._bet}.")
+                player.adjust_balance(player._bet)
                 result = "win"
             elif player_score == dealer_score:
-                print(f"{player.name} 🤝 ties with the dealer. Returns 💰 {player.bet}.")
+                print(f"{player.name} 🤝 ties with the dealer. Returns 💰 {player._bet}.")
                 result = "tie"
             else:
-                print(f"{player.name} ❌ loses to the dealer. Loses 💸 {player.bet}.")
-                player.adjust_balance(-player.bet)
+                print(f"{player.name} ❌ loses to the dealer. Loses 💸 {player._bet}.")
+                player.adjust_balance(-player._bet)
                 result = "lose"
 
             # Adding the bet and result to the history for the current round
-            player.add_history(player.bet, result)
+            player._add_history(player._bet, result)
 
     def reset_game(self) -> None:
         """
@@ -120,8 +120,8 @@ class Game:
         """
         self.deck = Deck()
         for player in self.players + [self.dealer]:
-            player.hand = []
-            player.bet = 0
+            player._hand = []
+            player._bet = 0
         self.current_round += 1
 
     def play(self) -> None:
@@ -134,4 +134,4 @@ class Game:
 
         print("\n💰 Final Balances 💰")
         for player in self.players:
-            print(f"{player.name} final balance: 💵 {player.balance}")
+            print(f"{player.name} final balance: 💵 {player._balance}")

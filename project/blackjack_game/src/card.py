@@ -19,8 +19,8 @@ class Card:
         :param rank: The rank of the card (e.g., "A", "K", "4", "7").
         :param suit: The suit of the card (e.g., Suit.SPADES, Suit.HEARTS).
         """
-        self.rank = rank
-        self.suit = suit
+        self._rank = rank
+        self._suit = suit
 
     def value(self) -> int:
         """
@@ -29,12 +29,12 @@ class Card:
 
         :return: The value of the card for blackjack.
         """
-        if self.rank in ["J", "Q", "K"]:
+        if self._rank in ["J", "Q", "K"]:
             return 10
-        elif self.rank == "A":
+        elif self._rank == "A":
             return 11
         else:
-            return int(self.rank)
+            return int(self._rank)
 
     def __str__(self) -> str:
         """
@@ -42,4 +42,4 @@ class Card:
 
         :return: A string representing the card.
         """
-        return f"{self.rank} {self.suit}"
+        return f"{self._rank} {self._suit}"

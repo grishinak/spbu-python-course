@@ -40,7 +40,7 @@ class AggressiveStrategy(Strategy):
         """          
         while bot.calculate_score() < 19:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
 
 
 class ConservativeStrategy(Strategy):
@@ -59,7 +59,7 @@ class ConservativeStrategy(Strategy):
         """    
         while bot.calculate_score() < 15:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
 
 
 class RiskyStrategy(Strategy):
@@ -78,7 +78,7 @@ class RiskyStrategy(Strategy):
         """    
         while bot.calculate_score() < 20:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
 
 
 class BasicStrategy(Strategy):
@@ -97,7 +97,7 @@ class BasicStrategy(Strategy):
         """    
         while bot.calculate_score() < 17:
             bot.add_card(deck.draw())
-            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} ({self.__class__.__name__}) draws 🎴 {bot._hand[-1]}.")
 
 
 class AdaptiveStrategy(Strategy):
@@ -114,9 +114,9 @@ class AdaptiveStrategy(Strategy):
         :param bot: The bot instance making the move.
         :param deck: The deck from which cards will be drawn.
         """
-        if len(bot.history["results"]) > 0:
-            last_result = bot.history["results"][-1]
-            last_bet = bot.history["bets"][-1]
+        if len(bot._history["results"]) > 0:
+            last_result = bot._history["results"][-1]
+            last_bet = bot._history["bets"][-1]
 
             if last_result == "lose":
                 print(f"{bot.name} is playing more conservatively after a loss.")
@@ -137,7 +137,7 @@ class AdaptiveStrategy(Strategy):
         """
         while bot.calculate_score() < 19:
             bot.add_card(deck.draw())
-            print(f"{bot.name} (Aggressive) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} (Aggressive) draws 🎴 {bot._hand[-1]}.")
 
     def play_conservative(self, bot: "Bot", deck: "Deck") -> None:
         """
@@ -148,7 +148,7 @@ class AdaptiveStrategy(Strategy):
         """
         while bot.calculate_score() < 15:
             bot.add_card(deck.draw())
-            print(f"{bot.name} (Conservative) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} (Conservative) draws 🎴 {bot._hand[-1]}.")
 
     def play_basic(self, bot: "Bot", deck: "Deck") -> None:
         """
@@ -159,4 +159,4 @@ class AdaptiveStrategy(Strategy):
         """    
         while bot.calculate_score() < 17:
             bot.add_card(deck.draw())
-            print(f"{bot.name} (Basic) draws 🎴 {bot.hand[-1]}.")
+            print(f"{bot.name} (Basic) draws 🎴 {bot._hand[-1]}.")

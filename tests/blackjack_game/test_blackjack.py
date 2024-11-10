@@ -13,7 +13,7 @@ def game_setup():
 
 def test_initial_balance(game_setup):
     for player in game_setup.players:
-        assert player.balance == 200
+        assert player._balance == 200
 
 
 @pytest.mark.parametrize(
@@ -34,7 +34,7 @@ def test_deck_draw(game_setup):
     first_card = deck.draw()
     assert first_card is not None
     assert (
-        len(deck.cards) == 51
+        len(deck._cards) == 51
     )  # After one card, there should be 51 cards left in the deck
 
 
@@ -73,7 +73,7 @@ def test_betting(game_setup, bet_amount, expected_balance):
             -bet_amount
         )  # Reducing the balance by a bet
         assert (
-            game_setup.players[0].balance == expected_balance
+            game_setup.players[0]._balance == expected_balance
         )  # Checking the balance after setting the bet
 
 
@@ -97,8 +97,8 @@ def test_winner_determination(game_setup):
 
     game_setup.determine_winner()
 
-    assert game_setup.players[0].balance == 150  # player lost 50
-    assert game_setup.players[1].balance == 300  #  player win 100
+    assert game_setup.players[0]._balance == 150  # player lost 50
+    assert game_setup.players[1]._balance == 300  #  player win 100
     assert (
-        game_setup.players[2].balance == 200
+        game_setup.players[2]._balance == 200
     )  #  player ties with bet of 150 - balance stays 200
