@@ -1,64 +1,123 @@
 @startuml
 
+class Suit {
+    +SPADES: Suit
+    +HEARTS: Suit
+    +DIAMONDS: Suit
+    +CLUBS: Suit
+    +__str__(): string
+}
+
 class Card {
-    +__init__(rank: str, suit: str)
-    +__str__() : str
-    +value() : int
+    -_rank: string
+    -_suit: Suit
+    +__init__(rank: string, suit: Suit)
+    +value(): int
+    +__str__(): string
 }
 
 class Deck {
-    +__init__()
-    +draw() : Card
-}
-
-class Player {
-    +__init__(name: str)
-    +set_bet(amount: int)
-    +adjust_balance(amount: int)
-    +add_card(card: Card)
-    +calculate_score() : int
-    +make_move(deck: Deck)
-    -hand: List<Card>
-    -balance: int
-    -bet: int
-}
-
-class Dealer {
-    +__init__()
-}
-
-class Bot {
-    +__init__(name: str, strategy: str)
-    +make_move(deck: Deck)
-    -strategy: str
+    -_cards: List<Card>
+    +__init__(): None
+    +draw(): Card
 }
 
 class Game {
-    +__init__(num_bots: int, rounds: int)
-    +set_bets()
-    +deal_initial_cards()
-    +show_hands()
-    +play_round()
-    +determine_winner()
-    +reset_game()
-    +play()
-    -deck: Deck
-    -players: List<Bot>
-    -dealer: Dealer
-    -rounds: int
-    -current_round: int
+    -_deck: Deck
+    -_players: List<Bot>
+    -_dealer: Dealer
+    -_rounds: int
+    -_current_round: int
+    +__init__(num_bots: int = 3, rounds: int = 5): void
+    -_set_bets(): void
+    -_deal_initial_cards(): void
+    -_show_hands(): void
+    -_play_round(): void
+    -_determine_winner(): void
+    -_reset_game(): void
+    +play(): void
 }
 
-Player <|-- Dealer : inherits
-Player <|-- Bot : inherits
+class Player {
+    + name: str
+    - _hand: List[Card]
+    - _balance: int
+    - _bet: int
+    + __init__(name: str)
+    + set_bet(amount: int)
+    + adjust_balance(amount: int)
+    + add_card(card: Card)
+    + calculate_score(): int
+    - make_move(deck: Deck)
+}
 
-Game --> Deck : uses
-Game --> Player : manages
-Game --> Dealer : manages
-Game --> Bot : manages
-Bot --> Deck : uses
-Dealer --> Deck : uses
-Player --> Card : holds
-Deck --> Card : uses
+class HistoryDict {
+    + bets: List[int]
+    + results: List[str]
+}
+
+class Bot {
+    - _strategy: Strategy
+    - _history: HistoryDict
+    + __init__(name: str, strategy: Strategy)
+    - _add_history(bet: int, result: str)
+    + make_move(deck: Deck)
+}
+
+class Dealer {
+    + __init__()
+}
+
+class Strategy {
+    {abstract} +make_move(bot: Bot, deck: Deck): void
+}
+
+class AggressiveStrategy {
+    +make_move(bot: Bot, deck: Deck): void
+}
+
+class ConservativeStrategy {
+    +make_move(bot: Bot, deck: Deck): void
+}
+
+class RiskyStrategy {
+    +make_move(bot: Bot, deck: Deck): void
+}
+
+class BasicStrategy {
+    +make_move(bot: Bot, deck: Deck): void
+}
+
+class AdaptiveStrategy {
+    +make_move(bot: Bot, deck: Deck): void
+    -_play_aggressive(bot: Bot, deck: Deck): void
+    -_play_conservative(bot: Bot, deck: Deck): void
+    -_play_basic(bot: Bot, deck: Deck): void
+}
+
+
+
+
+Card --> Suit
+Deck "1" *-- "*" Card
+
+Player "1" o-- "*" Card
+
+Bot "1" --> "1" Strategy 
+Bot -->  HistoryDict 
+
+Game "1" *-- "1" Deck 
+Game "1" *-- "*" Player 
+Game "1" *-- "1" Dealer 
+
+Player <|-- Dealer
+Player <|-- Bot
+
+Strategy <|-- AggressiveStrategy
+Strategy <|-- ConservativeStrategy
+Strategy <|-- RiskyStrategy
+Strategy <|-- BasicStrategy
+Strategy <|-- AdaptiveStrategy
+
 
 @enduml

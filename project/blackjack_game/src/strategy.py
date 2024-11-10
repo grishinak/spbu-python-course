@@ -2,8 +2,8 @@ from typing import TYPE_CHECKING
 
 # use to prevent circular imports
 if TYPE_CHECKING:
-    from player import Bot
-    from deck import Deck
+    from .player import Bot
+    from .deck import Deck
 
 
 class Strategy:
