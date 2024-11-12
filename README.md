@@ -119,6 +119,6 @@
 -
 
 P.S.
-[Диск]https://drive.google.com/drive/folders/1F7mC_C_0lD3ONs_DrNQcWu-WPEzyGF55?usp=sharing) со всеми выполненными мной заданиями курса в Google Colab, (в случае, если вдруг ссылки выше неактивны)
+[Диск](https://drive.google.com/drive/folders/1F7mC_C_0lD3ONs_DrNQcWu-WPEzyGF55?usp=sharing) со всеми выполненными мной заданиями курса в Google Colab, (в случае, если вдруг ссылки выше неактивны)
 
 - Гришина Ксения [@grishinak](https://github.com/grishinak)
