@@ -1,4 +1,5 @@
 black
+jupyter
 matplotlib
 mypy
 nbformat #for .ipynb plot visualisation in vs code
