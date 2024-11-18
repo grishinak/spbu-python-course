@@ -1,4 +1,10 @@
 black
+jupyter
+matplotlib
 mypy
+nbformat #for .ipynb plot visualisation in vs code
+pandas
+plotly
 pre-commit
 pytest
+seaborn
