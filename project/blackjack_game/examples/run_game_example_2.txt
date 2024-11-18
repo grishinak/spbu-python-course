@@ -1,0 +1,104 @@
+🎲 Round 1 🎲
+Bot 1 bets 💰 26
+Bot 2 bets 💰 91
+Bot 3 bets 💰 49
+Bot 1 🃏 hand: Q ♥️, 4 ♣️, Score: 14 💰 Bet: 26, Balance: 200
+Bot 2 🃏 hand: J ♥️, 6 ♠️, Score: 16 💰 Bet: 91, Balance: 200
+Bot 3 🃏 hand: 8 ♦️, K ♦️, Score: 18 💰 Bet: 49, Balance: 200
+Dealer 🃏 hand: 5 ♦️, A ♣️, Score: 16
+Bot 1 (AggressiveStrategy) draws 🎴 J ♣️.
+Bot 1 ends with score 24
+Bot 2 ends with score 16
+Bot 3 ends with score 18
+Dealer draws 🎴 7 ♣️.
+Dealer draws 🎴 6 ♣️.
+Dealer ends with score 19
+Bot 1 🔥 busts! Loses 💸 26.
+Bot 2 ❌ loses to the dealer. Loses 💸 91.
+Bot 3 ❌ loses to the dealer. Loses 💸 49.
+
+🎲 Round 2 🎲
+Bot 1 bets 💰 28
+Bot 2 bets 💰 14
+Bot 3 bets 💰 90
+Bot 1 🃏 hand: A ♠️, 2 ♥️, Score: 13 💰 Bet: 28, Balance: 174
+Bot 2 🃏 hand: Q ♦️, 9 ♥️, Score: 19 💰 Bet: 14, Balance: 109
+Bot 3 🃏 hand: A ♣️, 8 ♠️, Score: 19 💰 Bet: 90, Balance: 151
+Dealer 🃏 hand: 4 ♥️, 6 ♠️, Score: 10
+Bot 1 (AggressiveStrategy) draws 🎴 4 ♠️.
+Bot 1 (AggressiveStrategy) draws 🎴 3 ♦️.
+Bot 1 ends with score 20
+Bot 2 ends with score 19
+Bot 3 is playing more conservatively after a loss.
+Bot 3 ends with score 19
+Dealer draws 🎴 J ♥️.
+Dealer ends with score 20
+Bot 1 🤝 ties with the dealer. Returns 💰 28.
+Bot 2 ❌ loses to the dealer. Loses 💸 14.
+Bot 3 ❌ loses to the dealer. Loses 💸 90.
+
+🎲 Round 3 🎲
+Bot 1 bets 💰 83
+Bot 2 bets 💰 52
+Bot 3 bets 💰 58
+Bot 1 🃏 hand: 2 ♠️, 3 ♠️, Score: 5 💰 Bet: 83, Balance: 174
+Bot 2 🃏 hand: 4 ♦️, 4 ♠️, Score: 8 💰 Bet: 52, Balance: 95
+Bot 3 🃏 hand: 6 ♥️, A ♠️, Score: 17 💰 Bet: 58, Balance: 61
+Dealer 🃏 hand: 10 ♣️, A ♦️, Score: 21
+Bot 1 (AggressiveStrategy) draws 🎴 Q ♦️.
+Bot 1 (AggressiveStrategy) draws 🎴 K ♥️.
+Bot 1 ends with score 25
+Bot 2 (ConservativeStrategy) draws 🎴 9 ♥️.
+Bot 2 ends with score 17
+Bot 3 is playing more conservatively after a loss.
+Bot 3 ends with score 17
+Dealer ends with score 21
+Bot 1 🔥 busts! Loses 💸 83.
+Bot 2 ❌ loses to the dealer. Loses 💸 52.
+Bot 3 ❌ loses to the dealer. Loses 💸 58.
+
+🎲 Round 4 🎲
+Bot 1 bets 💰 28
+Bot 2 bets 💰 28
+Bot 3 bets 💰 3
+Bot 1 🃏 hand: J ♦️, 3 ♦️, Score: 13 💰 Bet: 28, Balance: 91
+Bot 2 🃏 hand: K ♦️, 6 ♦️, Score: 16 💰 Bet: 28, Balance: 43
+Bot 3 🃏 hand: A ♠️, 8 ♦️, Score: 19 💰 Bet: 3, Balance: 3
+Dealer 🃏 hand: 5 ♠️, Q ♣️, Score: 15
+Bot 1 (AggressiveStrategy) draws 🎴 8 ♠️.
+Bot 1 ends with score 21
+Bot 2 ends with score 16
+Bot 3 is playing more conservatively after a loss.
+Bot 3 ends with score 19
+Dealer draws 🎴 J ♠️.
+Dealer ends with score 25
+Bot 1 🏆 wins! Gains 💵 28.
+Bot 2 🏆 wins! Gains 💵 28.
+Bot 3 🏆 wins! Gains 💵 3.
+
+🎲 Round 5 🎲
+Bot 1 bets 💰 95
+Bot 2 bets 💰 23
+Bot 3 bets 💰 4
+Bot 1 🃏 hand: 2 ♥️, 4 ♦️, Score: 6 💰 Bet: 95, Balance: 119
+Bot 2 🃏 hand: 6 ♣️, K ♥️, Score: 16 💰 Bet: 23, Balance: 71
+Bot 3 🃏 hand: 5 ♠️, 2 ♣️, Score: 7 💰 Bet: 4, Balance: 6
+Dealer 🃏 hand: 5 ♦️, 10 ♥️, Score: 15
+Bot 1 (AggressiveStrategy) draws 🎴 2 ♦️.
+Bot 1 (AggressiveStrategy) draws 🎴 A ♥️.
+Bot 1 ends with score 19
+Bot 2 ends with score 16
+Bot 3 is following a basic strategy.
+Bot 3 (Basic) draws 🎴 A ♠️.
+Bot 3 ends with score 18
+Dealer draws 🎴 A ♦️.
+Dealer draws 🎴 5 ♥️.
+Dealer ends with score 21
+Bot 1 ❌ loses to the dealer. Loses 💸 95.
+Bot 2 ❌ loses to the dealer. Loses 💸 23.
+Bot 3 ❌ loses to the dealer. Loses 💸 4.
+
+💰 Final Balances 💰
+Bot 1 final balance: 💵 24
+Bot 2 final balance: 💵 48
+Bot 3 final balance: 💵 2
