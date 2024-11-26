@@ -117,6 +117,7 @@
 
 - Task#7. [Jupyter](https://colab.research.google.com/drive/1BysiqCuWbhVlmRXjUjq6YhMuhqSaXxHG?usp=sharing)
 - Task#8. [Numpy](https://colab.research.google.com/drive/19cr3WRLZPp3nKwiwhuYtI10cnrW48joP?usp=sharing)
+- Task#9. [Titanic](https://colab.research.google.com/drive/136PGbWHMrHiDgFw_kYRXrQW-pRyVWwLT?usp=sharing)
 
 P.S.
 [Диск](https://drive.google.com/drive/folders/1F7mC_C_0lD3ONs_DrNQcWu-WPEzyGF55?usp=sharing) со всеми выполненными мной заданиями курса в Google Colab, (в случае, если вдруг ссылки выше неактивны)
