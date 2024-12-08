@@ -1,3 +1,17 @@
+# Задания, выполненные в Google Colab
+
+- Task#7. [Jupyter](https://colab.research.google.com/drive/1BysiqCuWbhVlmRXjUjq6YhMuhqSaXxHG?usp=sharing)
+- Task#8. [Numpy](https://colab.research.google.com/drive/19cr3WRLZPp3nKwiwhuYtI10cnrW48joP?usp=sharing)
+- Task#9. [Titanic](https://colab.research.google.com/drive/136PGbWHMrHiDgFw_kYRXrQW-pRyVWwLT?usp=sharing)
+- Task#10. [Classification comparison](https://colab.research.google.com/drive/1f6EUuZ7m0ZWAnnb2VqK6Fuca41mGBbPf?usp=sharing)
+
+P.S.
+[Диск](https://drive.google.com/drive/folders/1F7mC_C_0lD3ONs_DrNQcWu-WPEzyGF55?usp=sharing) со всеми выполненными мной заданиями курса в Google Colab, (в случае, если вдруг ссылки выше неактивны)
+
+- Гришина Ксения [@grishinak](https://github.com/grishinak)
+
+---
+
 [![Check code style](https://github.com/JetBrains-Research/formal-lang-course/actions/workflows/code_style.yml/badge.svg)](https://github.com/JetBrains-Research/formal-lang-course/actions/workflows/code_style.yml)
 [![Code style](https://img.shields.io/badge/Code%20style-black-000000.svg)](https://github.com/psf/black)
 ---
@@ -112,14 +126,3 @@
 ## Контакты
 
 - Павел Алимов [@Krekep](https://github.com/Krekep)
-
-# Задания, выполненные в Google Colab
-
-- Task#7. [Jupyter](https://colab.research.google.com/drive/1BysiqCuWbhVlmRXjUjq6YhMuhqSaXxHG?usp=sharing)
-- Task#8. [Numpy](https://colab.research.google.com/drive/19cr3WRLZPp3nKwiwhuYtI10cnrW48joP?usp=sharing)
-- Task#9. [Titanic](https://colab.research.google.com/drive/136PGbWHMrHiDgFw_kYRXrQW-pRyVWwLT?usp=sharing)
-
-P.S.
-[Диск](https://drive.google.com/drive/folders/1F7mC_C_0lD3ONs_DrNQcWu-WPEzyGF55?usp=sharing) со всеми выполненными мной заданиями курса в Google Colab, (в случае, если вдруг ссылки выше неактивны)
-
-- Гришина Ксения [@grishinak](https://github.com/grishinak)
